@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: lightgray;
+        }
+
+        #container {
+            background-color: white;
+            display: grid;
+            grid-template: repeat(3, 100px) /  repeat(3, 100px) ;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        span:hover{
+            color: red;
+            border-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        const game = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+        ]
+
+        function checkStatus(user) {
+            // verticales
+           if (game[0][0] === user && game[0][1] === user && game[0][2] === user) {
+               return true
+           }
+           if (game[1][0] === user && game[1][1] === user && game[1][2] === user) {
+               return true
+           }
+           if (game[2][0] === user && game[2][1] === user & game[2][2] === user) {
+               return true
+           }
+           // horizontales
+           if (game[0][0] === user && game[0][1] === user && game[0][2] === user) {
+               return true
+           }
+           if (game[1][0] === user && game[1][1] === user && game[1][2] === user) {
+               return true
+           }           
+           if (game[1][0] === user && game[1][1] === user && game[1][2] === user) {
+               return true
+           }
+            
+            // diagonales
+            if (game[0][0] === user && game[1][1] === user && game[2][2] === user) {
+               return true
+           }
+           if (game[0][2] === user && game[1][1] === user && game[2][0] === user) {
+               return true
+           }
+
+           return false
+        }
+
+        function setWinner(user) {
+            alert(`Ganó el usuario ${user}`)
+        }
+
+        let currentUser = '0'
+        function selectItem() {
+            game[this.dataset.row][this.dataset.column] = currentUser
+            currentUser === '0' ? currentUser = 'X' :currentUser = '0'
+            setBoard()
+            if (checkStatus(currentUser)) {
+                setWinner(currentUser)
+            }
+        }
+
+        function render({content, row, column}, container) {
+            const el = document.createElement('span')
+            el.textContent = content
+            el.dataset.row = row
+            el.dataset.column = column
+            el.addEventListener('click', selectItem)
+            container.append(el)
+        }
+
+        function setBoard() {
+            container.innerHTML = ''
+            game.forEach((row, indexRow) => {
+                row.forEach((column, indexColumn)=> {
+                    render({
+                        content:column,
+                        row: indexRow,
+                        column: indexColumn
+                    }, window.container)
+                })
+            })
+        }
+
+        setBoard()
+        
+
+    </script>
+</body>
+</html>
