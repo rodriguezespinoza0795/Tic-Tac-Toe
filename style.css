@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: lightgray;
+}
+
+#container {
+    background-color: white;
+    display: grid;
+    grid-template: repeat(3, 100px) /  repeat(3, 100px) ;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+span:hover{
+    color: red;
+    border-color: red;
+}
