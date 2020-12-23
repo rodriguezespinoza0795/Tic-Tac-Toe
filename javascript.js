@@ -8,13 +8,13 @@ var game = [
 // Check if there is a winner
 function checkStatus(user) {
     // vertical
-   if (game[0][0] === user && game[0][1] === user && game[0][2] === user) {
+   if (game[0][0] === user && game[1][0] === user && game[2][0] === user) {
        return true
    }
    if (game[1][0] === user && game[1][1] === user && game[1][2] === user) {
        return true
    }
-   if (game[2][0] === user && game[2][1] === user & game[2][2] === user) {
+   if (game[2][0] === user && game[2][1] === user && game[2][2] === user) {
        return true
    }
    // horizontal
@@ -24,7 +24,7 @@ function checkStatus(user) {
    if (game[1][0] === user && game[1][1] === user && game[1][2] === user) {
        return true
    }           
-   if (game[1][0] === user && game[1][1] === user && game[1][2] === user) {
+   if (game[2][0] === user && game[2][1] === user && game[2][2] === user) {
        return true
    }
     
